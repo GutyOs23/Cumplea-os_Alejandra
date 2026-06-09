@@ -1,0 +1,986 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle at 10% 20%, #0a0f2a, #03050b);
+  font-family: 'Inter', 'Quicksand', sans-serif;
+  color: #f3e9ff;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ========== LOADING SCREEN MEJORADO ========== */
+#loadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0f2a, #1a0f2a, #0a0f2a);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease;
+}
+
+.birthday-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  animation: pulse 1s infinite;
+  box-shadow: 0 0 20px rgba(255,107,107,0.5);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.stars-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-radial-gradient(circle at 20% 30%, white 1px, transparent 2px);
+  background-size: 30px 30px;
+  opacity: 0.4;
+  animation: starTwinkle 3s infinite;
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* ========== ANIMACIÓN DE SNOOPY MEJORADA ========== */
+.snoopy-animation-container {
+  position: relative;
+  width: 300px;
+  height: 150px;
+  margin-bottom: 40px;
+}
+
+.snoopy-walking-animated {
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+  animation: walkPath 4s ease-in-out infinite;
+}
+
+@keyframes walkPath {
+  0% { transform: translateX(0px) translateY(0px); }
+  25% { transform: translateX(30px) translateY(-5px); }
+  50% { transform: translateX(60px) translateY(0px); }
+  75% { transform: translateX(30px) translateY(-5px); }
+  100% { transform: translateX(0px) translateY(0px); }
+}
+
+.snoopy-body {
+  width: 80px;
+  height: 70px;
+  background: white;
+  border-radius: 50% 50% 45% 45%;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.snoopy-body::before {
+  content: "🐶";
+  position: absolute;
+  font-size: 2.5rem;
+  top: -15px;
+  left: 20px;
+}
+
+.snoopy-body::after {
+  content: "👀";
+  position: absolute;
+  font-size: 1.2rem;
+  top: 20px;
+  left: 20px;
+}
+
+.snoopy-legs {
+  position: absolute;
+  bottom: -10px;
+  left: 15px;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.leg {
+  width: 15px;
+  height: 20px;
+  background: #333;
+  border-radius: 10px;
+  animation: walkLeg 0.5s infinite;
+}
+
+.leg-left {
+  animation-delay: 0s;
+}
+
+.leg-right {
+  animation-delay: 0.25s;
+}
+
+@keyframes walkLeg {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(20deg); }
+}
+
+.snoopy-hat {
+  position: absolute;
+  top: -20px;
+  right: 0px;
+  font-size: 1.8rem;
+  animation: hatWobble 1s infinite;
+}
+
+@keyframes hatWobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  75% { transform: rotate(-10deg); }
+}
+
+.woodstock-flying-animated {
+  position: absolute;
+  bottom: 40px;
+  right: 20px;
+  animation: woodstockFly 3s ease-in-out infinite;
+}
+
+@keyframes woodstockFly {
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(-20px, -15px) rotate(-10deg); }
+  50% { transform: translate(-40px, -5px) rotate(0deg); }
+  75% { transform: translate(-20px, -15px) rotate(10deg); }
+}
+
+.woodstock-body {
+  font-size: 2rem;
+  position: relative;
+}
+
+.woodstock-wings {
+  position: absolute;
+  top: -5px;
+  left: 15px;
+  display: flex;
+  gap: 5px;
+  animation: wingFlap 0.3s infinite;
+}
+
+@keyframes wingFlap {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.5); }
+}
+
+.floating-balloons {
+  position: absolute;
+  bottom: 20%;
+  display: flex;
+  gap: 30px;
+  font-size: 2.5rem;
+  animation: balloonsFloat 3s infinite;
+}
+
+.floating-balloons span {
+  animation: balloonFloat 2s ease-in-out infinite;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.floating-balloons span:hover {
+  transform: scale(1.2);
+}
+
+.floating-balloons span:nth-child(1) { animation-delay: 0s; }
+.floating-balloons span:nth-child(2) { animation-delay: 0.3s; }
+.floating-balloons span:nth-child(3) { animation-delay: 0.6s; }
+.floating-balloons span:nth-child(4) { animation-delay: 0.9s; }
+.floating-balloons span:nth-child(5) { animation-delay: 1.2s; }
+.floating-balloons span:nth-child(6) { animation-delay: 1.5s; }
+
+@keyframes balloonFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+}
+
+.typewriter {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-align: center;
+  background: rgba(255,255,240,0.1);
+  backdrop-filter: blur(12px);
+  padding: 1rem 2rem;
+  border-radius: 60px;
+  border: 1px solid rgba(255,215,0,0.5);
+  min-height: 150px;
+  max-width: 90%;
+  margin: 0 auto;
+  white-space: pre-line;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+}
+
+.enter-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 40px;
+  color: white;
+  margin-top: 40px;
+  cursor: pointer;
+  box-shadow: 0 0 30px #ff6b6b;
+  transition: 0.3s;
+  position: relative;
+  z-index: 100;
+  animation: btnGlow 1.5s infinite;
+}
+
+@keyframes btnGlow {
+  0%, 100% { box-shadow: 0 0 20px #ff6b6b; }
+  50% { box-shadow: 0 0 50px #ff8e53; }
+}
+
+.enter-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px #ffaa55;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ========== MAIN APP ========== */
+.main-app {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ========== BANNER DE CUMPLEAÑOS ========== */
+.birthday-banner {
+  background: linear-gradient(135deg, rgba(255,107,107,0.3), rgba(255,142,83,0.3));
+  border-radius: 40px;
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+  border: 2px solid rgba(255,215,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.birthday-banner h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #ffd89b, #ff6b6b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: titleGlow 1s infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 5px gold; }
+  50% { text-shadow: 0 0 20px #ff6b6b; }
+}
+
+.birthday-subtitle {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+.birthday-countdown {
+  margin-top: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffd89b;
+}
+
+/* ========== NAVEGACIÓN ========== */
+.galaxy-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(20, 20, 50, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 10px 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.nav-logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ffd89b, #ff6b6b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  cursor: pointer;
+}
+
+.birthday-icon {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 1s infinite;
+}
+
+.nav-controls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.nav-icon {
+  background: none;
+  border: none;
+  color: #ffefc0;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.nav-icon:hover {
+  transform: scale(1.1);
+}
+
+/* ========== MÚSICA ========== */
+.music-player {
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(16px);
+  border-radius: 60px;
+  padding: 8px 20px;
+  margin-bottom: 25px;
+}
+
+.player-progress-container {
+  height: 4px;
+  background: #555;
+  border-radius: 10px;
+  width: 100%;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.player-progress-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b6b, #ffd89b);
+  width: 0%;
+  border-radius: 10px;
+}
+
+.player-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.visualizer {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.visualizer span {
+  display: inline-block;
+  width: 6px;
+  height: 12px;
+  background: linear-gradient(180deg, #ffd89b, #ff6b6b);
+  animation: vizPulse 0.6s infinite alternate;
+  border-radius: 3px;
+}
+
+@keyframes vizPulse {
+  0% { height: 6px; opacity: 0.4; }
+  100% { height: 22px; opacity: 1; }
+}
+
+/* ========== CHAPTERS ========== */
+.chapter {
+  background: rgba(15, 25, 45, 0.6);
+  backdrop-filter: blur(4px);
+  border-radius: 48px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  border: 1px solid rgba(255,200,100,0.3);
+  transition: all 0.3s;
+}
+
+.chapter:hover {
+  border-color: rgba(255,200,100,0.6);
+  transform: translateY(-5px);
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, #fff8e7, #ffd89b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ========== CONTADOR ========== */
+.counter-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.counter-card {
+  background: rgba(0,0,0,0.5);
+  border-radius: 30px;
+  padding: 20px;
+  text-align: center;
+  min-width: 120px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.counter-card:hover {
+  transform: scale(1.05);
+  background: rgba(255,107,107,0.3);
+}
+
+.counter-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: block;
+  color: #ffdd99;
+}
+
+/* ========== TIMELINE ========== */
+.timeline-interactive {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.timeline-msg {
+  background: rgba(255,215,0,0.15);
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  animation: fadeInUp 0.5s ease;
+}
+
+/* ========== PLANETAS ========== */
+.planet-map {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.planet {
+  background: radial-gradient(circle, #f3b33d, #aa6f20);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 15px rgba(255,180,40,0.8);
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.planet:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 30px rgba(255,180,40,1);
+}
+
+.planet-message-card {
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 40px;
+  font-size: 1.1rem;
+  animation: fadeInUp 0.5s ease;
+}
+
+/* ========== 500 RAZONES ========== */
+.reasons-garden {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0;
+  max-height: 350px;
+  overflow-y: auto;
+  padding: 15px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 40px;
+}
+
+.reason-star {
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  filter: drop-shadow(0 0 5px rgba(255,215,0,0.5));
+}
+
+.reason-star:hover {
+  transform: scale(1.3) rotate(10deg);
+  filter: drop-shadow(0 0 15px gold);
+}
+
+.reason-display {
+  background: linear-gradient(135deg, #1e1a2f, #2a1a3f);
+  border-radius: 48px;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  border: 1px solid rgba(255,215,0,0.3);
+  position: relative;
+}
+
+.reason-sparkle {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  animation: sparkle 1s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.5; transform: translateX(-50%) scale(1.2); }
+}
+
+.reason-counter {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #ffd89b;
+}
+
+/* ========== JARDÍN SECRETO ========== */
+.flower-garden {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, auto));
+  gap: 15px;
+  justify-content: center;
+}
+
+.flower {
+  font-size: 2.2rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  filter: drop-shadow(0 0 5px rgba(255,200,100,0.5));
+}
+
+.flower:hover {
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(0 0 15px gold);
+}
+
+/* ========== CARTAS ========== */
+.envelopes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.envelope {
+  background: linear-gradient(135deg, #f7e5c2, #ffe8cc);
+  width: 170px;
+  padding: 25px 15px;
+  border-radius: 16px;
+  text-align: center;
+  cursor: pointer;
+  color: #4a2e1e;
+  font-weight: bold;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.envelope:hover {
+  transform: translateY(-8px) rotate(-2deg);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+  background: linear-gradient(135deg, #ffe8cc, #fff2e0);
+}
+
+.letter-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+}
+
+.letter-content {
+  background: linear-gradient(135deg, #fff2e0, #ffe8cc);
+  color: #2c1a0c;
+  padding: 2rem;
+  border-radius: 32px;
+  max-width: 500px;
+  text-align: center;
+  animation: fadeInUp 0.5s ease;
+  position: relative;
+}
+
+.letter-heart {
+  font-size: 3rem;
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.letter-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 20px 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.letter-content button {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  border: none;
+  padding: 10px 25px;
+  border-radius: 40px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.letter-content button:hover {
+  transform: scale(1.05);
+}
+
+/* ========== MUNDO SNOOPY MEJORADO ========== */
+.snoopy-world {
+  position: relative;
+  min-height: 250px;
+  background: radial-gradient(circle at 30% 40%, #2a4a6a, #0a1a2a);
+  border-radius: 40px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+#snoopyCanvas {
+  display: block;
+  width: 100%;
+  height: 200px;
+  background: radial-gradient(circle at 30% 40%, #2a4a6a, #0a1a2a);
+  cursor: pointer;
+}
+
+.snoopy-controls {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  padding: 15px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 0 0 40px 40px;
+}
+
+.snoopy-btn {
+  background: linear-gradient(135deg, #ffa559, #ff7e05);
+  border: none;
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s;
+}
+
+.snoopy-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ========== MINIJUEGOS ========== */
+.minigames-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.minigame-btn {
+  background: linear-gradient(135deg, #ffa559, #ff7e05);
+  border: none;
+  padding: 12px 18px;
+  border-radius: 60px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.minigame-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(255,107,107,0.5);
+}
+
+.minigame-feedback {
+  text-align: center;
+  padding: 15px;
+  background: rgba(255,215,0,0.2);
+  border-radius: 40px;
+  margin: 15px 0;
+  animation: fadeInUp 0.3s ease;
+}
+
+.achievements-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.achievements-list div {
+  background: linear-gradient(135deg, gold, #ff8e53);
+  color: #2c1a0c;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  animation: fadeInUp 0.3s ease;
+}
+
+/* ========== LIBRO MÁGICO ========== */
+.magic-book {
+  background: #55412b;
+  padding: 30px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.book-page {
+  background: #fef3d6;
+  color: #2b2118;
+  padding: 40px;
+  border-radius: 20px;
+  margin: 20px 0;
+  font-size: 1.2rem;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+.book-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.book-buttons button {
+  background: linear-gradient(135deg, #ffd966, #ffaa33);
+  border: none;
+  padding: 10px 25px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.book-buttons button:hover {
+  transform: scale(1.1);
+}
+
+/* ========== CIELO FINAL ========== */
+.final-sky canvas {
+  width: 100%;
+  height: 250px;
+  background: radial-gradient(circle, #0a1030, #010005);
+  border-radius: 40px;
+  display: block;
+}
+
+.cosmic-btn {
+  background: linear-gradient(135deg, #edd9b0, #ffd966);
+  margin-top: 15px;
+  padding: 12px 28px;
+  border-radius: 60px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cosmic-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px gold;
+}
+
+.final-message {
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 40px;
+  animation: fadeInUp 0.5s ease;
+}
+
+/* ========== MODAL DE CUMPLEAÑOS ========== */
+.birthday-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.birthday-modal-content {
+  background: linear-gradient(135deg, #1a1a3a, #2a1a3a);
+  border-radius: 50px;
+  max-width: 500px;
+  width: 90%;
+  border: 2px solid gold;
+  animation: modalPop 0.5s ease;
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.birthday-modal-header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,215,0,0.3);
+  position: relative;
+}
+
+.birthday-modal-close {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #ff6b6b;
+}
+
+.birthday-modal-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.birthday-modal-body {
+  padding: 30px;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* ========== MENSAJES FLOTANTES ========== */
+#floatingMessageContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.floating-note {
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  padding: 12px 24px;
+  border-radius: 100px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  border-left: 5px solid #ff6b6b;
+  animation: floatMessage 4s forwards;
+  font-weight: 500;
+}
+
+@keyframes floatMessage {
+  0% { transform: translateX(100px); opacity: 0; }
+  20% { transform: translateX(0); opacity: 1; }
+  80% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(-100px); opacity: 0; }
+}
+
+/* ========== ANIMACIONES GLOBALES ========== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(-100vh) translateX(30px) rotate(360deg); opacity: 0; }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .planet { width: 85px; height: 85px; font-size: 0.7rem; }
+  h2 { font-size: 1.5rem; }
+  .counter-card { min-width: 90px; }
+  .counter-number { font-size: 1.8rem; }
+  .typewriter { font-size: 1.2rem; }
+  .envelope { width: 140px; font-size: 0.8rem; padding: 15px; }
+  .birthday-banner h1 { font-size: 1.5rem; }
+  .book-page { font-size: 1rem; padding: 20px; }
+  .reason-star { font-size: 1.4rem; }
+}
+
+@media (max-width: 480px) {
+  .planet { width: 70px; height: 70px; font-size: 0.6rem; }
+  .reason-star { font-size: 1.2rem; }
+  .flower { font-size: 1.8rem; }
+  .minigame-btn { font-size: 0.7rem; padding: 8px 12px; }
+  .birthday-banner h1 { font-size: 1.2rem; }
+}

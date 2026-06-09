@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>🎂✨ Feliz Cumpleaños Alejandra ✨🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PANTALLA DE CARGA -->
+<div id="loadingScreen">
+  <div class="stars-bg"></div>
+  <div class="birthday-badge">🎂 HOY ES TU DÍA 🎂</div>
+  <div class="snoopy-animation-container">
+    <div class="snoopy-walking-animated">
+      <div class="snoopy-body"></div>
+      <div class="snoopy-legs">
+        <div class="leg leg-left"></div>
+        <div class="leg leg-right"></div>
+      </div>
+      <div class="snoopy-hat">🎩</div>
+    </div>
+    <div class="woodstock-flying-animated">
+      <div class="woodstock-body"></div>
+      <div class="woodstock-wings">
+        <span class="wing-left">🐦</span>
+        <span class="wing-right">✨</span>
+      </div>
+    </div>
+  </div>
+  <div class="typewriter" id="typewriterText"></div>
+  <div class="floating-balloons" id="floatingBalloons">
+    <span>🎈</span><span>🎈</span><span>🎈</span><span>🎈</span><span>🎈</span><span>🎈</span>
+  </div>
+  <button id="enterUniverseBtn" class="enter-btn hidden">🎂✨ Entrar al Universo de Alejandra ✨🎂</button>
+</div>
+
+<!-- APLICACIÓN PRINCIPAL -->
+<div id="mainApp" class="main-app hidden">
+  
+  <nav class="galaxy-nav">
+    <div class="nav-logo">🌙 ALEJANDRA ✨ 🎂</div>
+    <div class="nav-controls">
+      <button id="playPauseMusicBtn" class="nav-icon"><i class="fas fa-music"></i></button>
+      <div class="volume-slider-container">
+        <i class="fas fa-volume-up"></i>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+      </div>
+      <button id="fullscreenBtn" class="nav-icon"><i class="fas fa-expand"></i></button>
+      <button id="birthdaySurpriseBtn" class="nav-icon birthday-icon"><i class="fas fa-gift"></i></button>
+    </div>
+  </nav>
+
+  <div class="music-player">
+    <div class="player-progress-container">
+      <div class="player-progress-bar" id="playerProgress"></div>
+    </div>
+    <div class="player-controls">
+      <span class="music-title">🎵 Look After You · The Fray 🎂 Para ti, Alejandra</span>
+      <div class="visualizer" id="visualizer">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANNER DE CUMPLEAÑOS -->
+  <div class="birthday-banner" id="birthdayBanner">
+    <div class="birthday-fireworks" id="fireworksCanvas"></div>
+    <h1>🎂 ¡FELIZ CUMPLEAÑOS, ALEJANDRA! 🎂</h1>
+    <p class="birthday-subtitle">Hoy el universo está más brillante porque tú existes</p>
+    <div class="birthday-countdown" id="birthdayCountdown"></div>
+  </div>
+
+  <main>
+    <section class="chapter">
+      <h2>🌙 Desde aquel Noviembre 2025</h2>
+      <div class="counter-grid">
+        <div class="counter-card"><span class="counter-number" id="daysCount">0</span><span>💖 Días contigo</span></div>
+        <div class="counter-card"><span class="counter-number" id="nightsCount">0</span><span>🌙 Noches de estrellas</span></div>
+        <div class="counter-card"><span class="counter-number" id="sunsCount">0</span><span>☀️ Amaneceres juntos</span></div>
+        <div class="counter-card"><span class="counter-number" id="chaptersCount">0</span><span>📖 Capítulos escritos</span></div>
+      </div>
+      <div class="timeline-interactive" id="timelineEvents"></div>
+    </section>
+
+    <section class="chapter">
+      <h2>✨ El Universo de Alejandra ✨</h2>
+      <div class="planet-map">
+        <div class="planet" data-quality="dulzura">🌻 Dulzura</div>
+        <div class="planet" data-quality="sonrisa">✨ Sonrisa</div>
+        <div class="planet" data-quality="calma">🌙 Calma</div>
+        <div class="planet" data-quality="alegria">⭐ Alegría</div>
+        <div class="planet" data-quality="suenos">🦋 Sueños</div>
+        <div class="planet" data-quality="bondad">🌸 Bondad</div>
+      </div>
+      <div id="planetMessage" class="planet-message-card"></div>
+    </section>
+
+    <section class="chapter">
+      <h2>⭐ 500 Razones por las que brillas</h2>
+      <div class="reasons-garden" id="reasonsContainer"></div>
+      <div class="reason-display">
+        <div class="reason-sparkle">✨</div>
+        <p id="currentReason">✨ Toca una estrella y descubre una razón ✨</p>
+        <div class="reason-counter" id="reasonCounter">0 / 500 razones descubiertas</div>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <h2>🌷 El Jardín de los Recuerdos</h2>
+      <div class="flower-garden" id="flowerGarden"></div>
+    </section>
+
+    <section class="chapter">
+      <h2>💌 Cartas para ti en tu día</h2>
+      <div class="envelopes-container" id="envelopesContainer"></div>
+      <div id="letterModal" class="letter-modal hidden">
+        <div class="letter-content">
+          <div class="letter-heart">💖</div>
+          <p id="letterText"></p>
+          <button id="closeLetter">✨ Cerrar y guardar en el corazón ✨</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <h2>🐾 El Mundo Mágico de Snoopy</h2>
+      <div class="snoopy-world">
+        <canvas id="snoopyCanvas" width="600" height="200" style="width:100%; height:200px;"></canvas>
+        <div class="snoopy-controls">
+          <button id="petSnoopyBtn" class="snoopy-btn">🐾 Acariciar a Snoopy 🐾</button>
+          <button id="feedWoodstockBtn" class="snoopy-btn">🍞 Alimentar a Woodstock 🍞</button>
+        </div>
+      </div>
+      <div class="minigames-area">
+        <button class="minigame-btn" data-game="footprints">🐾 Seguir huellas mágicas</button>
+        <button class="minigame-btn" data-game="findWoodstock">🐦 Encontrar a Woodstock</button>
+        <button class="minigame-btn" data-game="hiddenStars">⭐ Estrellas ocultas</button>
+        <button class="minigame-btn" data-game="catchHearts">❤️ Atrapar corazones</button>
+        <button class="minigame-btn" data-game="birthdayWishes">🎂 Deseos de cumpleaños</button>
+      </div>
+      <div id="minigameResult" class="minigame-feedback"></div>
+      <div class="achievements-list" id="achievementsList"></div>
+    </section>
+
+    <section class="chapter">
+      <h2>📖 El Libro de los Deseos</h2>
+      <div class="magic-book">
+        <div class="book-page" id="bookPageContent"></div>
+        <div class="book-buttons">
+          <button id="prevPageBtn"><i class="fas fa-chevron-left"></i> Anterior</button>
+          <button id="nextPageBtn">Siguiente <i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter final-sky">
+      <h2>🌌 La Constelación de Alejandra</h2>
+      <canvas id="starCanvas" width="800" height="300"></canvas>
+      <div class="final-message hidden" id="finalMessageDisplay"></div>
+      <button id="triggerConstellationBtn" class="cosmic-btn">✨ Revelar Constelación de Alejandra ✨</button>
+    </section>
+  </main>
+</div>
+
+<div id="floatingMessageContainer"></div>
+
+<!-- MODAL DE SORPRESA DE CUMPLEAÑOS -->
+<div id="birthdayModal" class="birthday-modal hidden">
+  <div class="birthday-modal-content">
+    <div class="birthday-modal-header">
+      <span class="birthday-modal-close">&times;</span>
+      <h2>🎂 ¡SORPRESA! 🎂</h2>
+    </div>
+    <div class="birthday-modal-body" id="birthdayModalBody"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
